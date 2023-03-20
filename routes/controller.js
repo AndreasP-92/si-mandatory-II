@@ -32,10 +32,12 @@ router.get('/registered/webhook', (req,res)=>{
 
 function recievePayment(req,res){
     console.log("Do some important payment stuff...");
+    const body = req.body;
+
 
     const recieveObject = {
         msg : 'payment received',
-        success : true
+        success : body.success
     }
 
     if(recieveObject.success){
