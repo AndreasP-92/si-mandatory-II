@@ -2,21 +2,15 @@ import {Router} from 'express';
 const router = Router();
 
 router.post('/payment/recieved', (req,res)=>{
-    let body = req.body;
-    console.log(body)
+    res.writeHead(200,{
+        'content-type': 'application/json',
+        'cache-control': 'no-cache',
+        'connection': 'keep-alive',
+    })
+    recievePayment(req,res)
 
-    res.send('test')
 
-    // const result = {test:"test"}
-    // res.write(`data: ${{
-    //     status:200,
-    //     msg: "Payment has been Recieved"
-    // }}`)
-    // res.write(`data2: ${{
-    //     status:200,
-    //     msg: "Payment has been processed"
-    // }}`)
-    // res.end();
+    res.end();
 })
 
 router.get('/payment/processed', (req,res)=>{
@@ -35,6 +29,34 @@ router.get('/registered/webhook', (req,res)=>{
 
     setInterval(() => sendStatusToClient(req, res), 1000);
 })
+
+function recievePayment(req,res){
+    console.log("Do some important payment stuff...");
+
+    const recieveObject = {
+        msg : 'payment received',
+        success : true
+    }
+
+    if(recieveObject.success){
+        res.write(`{"recieved" : ${JSON.stringify(recieveObject)},`)
+        proceedPayment(req,res)
+    }else{
+        res.write(`{"recieved" : ${JSON.stringify(recieveObject)}}`)
+    }
+}
+
+function proceedPayment(req,res){
+    console.log("Do some importent proceeding stuff...")
+    
+    const proceedObject = {
+        msg : 'payment received',
+        success : true
+    }
+    res.write(`"proceeded" : ${JSON.stringify(proceedObject)}}`)
+
+}
+
 
 
 function sendStatusToClient(req, res) {
