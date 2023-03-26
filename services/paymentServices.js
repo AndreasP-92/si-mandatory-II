@@ -12,10 +12,10 @@ class PaymentService{
         }
     
         if(recieveObject.success){
-            res.write(`{'recieved' : ${JSON.stringify(recieveObject)},`);
+            res.write(`{"recieved" : ${JSON.stringify(recieveObject)},`);
             this.proceedPayment(req,res);
         }else{
-            res.write(`{'recieved' : ${JSON.stringify(recieveObject)}}`);
+            res.write(`{"recieved" : ${JSON.stringify(recieveObject)}}`);
         }
     }
 
@@ -26,7 +26,7 @@ class PaymentService{
             msg : 'payment received',
             success : true
         };
-        res.write(`'proceeded' : ${JSON.stringify(proceedObject)}}`);
+        res.write(`"proceeded" : ${JSON.stringify(proceedObject)}}`);
     
     }
 
