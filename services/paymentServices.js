@@ -29,6 +29,13 @@ class PaymentService{
         res.write(`"proceeded" : ${JSON.stringify(proceedObject)}}`)
     
     }
+
+    sendStatusToClient = (req, res) => {
+
+        const time = new Date().toTimeString();
+        res.write(`data: Webhook accepted:${time} \n\n`);
+    }
+    
 }
 
 export default new PaymentService
