@@ -16,7 +16,7 @@ router.post('/payment/recieved', (req,res)=>{
     res.end();
 });
 
-// ======== REGISTER WEBHOOK ========
+// ======== REGISTER SSE FROM EXTERNAL CLIENTS ========
 router.get('/registered/webhook', (req,res)=>{
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
